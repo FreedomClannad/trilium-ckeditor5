@@ -106,6 +106,10 @@ class Adapter {
 				return reject(response && response.error && response.error.message ? response.error.message : genericError);
 			}
 
+			// Dispatch custom event with file info
+			const event = new CustomEvent('imgUploadFile', { detail: { file: file } });
+			window.dispatchEvent(event);
+
 			resolve({
 				default: response.url
 			});
